@@ -10,6 +10,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] KeyCode positive;
     [SerializeField] KeyCode negative;
 
+    [SerializeField] KeyCode restartButton;
+    [SerializeField] KeyCode quitButton;
+    [SerializeField] KeyCode mainMenuButton;
+
     //Apply a constant force 
     void FixedUpdate()
     {
@@ -20,6 +24,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKey(negative))
         {
             GetComponent<Rigidbody>().velocity -= v3Force;
+        }
+        if (Input.GetKey(restartButton))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (Input.GetKey(quitButton))
+        {
+            Application.Quit();
+            Debug.Log("Quitting Application");
+        }
+        if (Input.GetKey(mainMenuButton))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

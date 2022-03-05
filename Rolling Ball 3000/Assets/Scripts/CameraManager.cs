@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoRotation : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     public GameObject player;
 
