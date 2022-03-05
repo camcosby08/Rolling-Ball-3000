@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
         //restart level programming
         if (Input.GetKey(restartButton))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("MainMenu");
         }
     }
     
