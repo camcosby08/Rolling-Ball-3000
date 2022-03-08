@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class GameManagerScript : MonoBehaviour
 {
     float time;
-    int finishTime;
     int seconds;
     public Text timerUI;
     private bool timeStatus;
@@ -20,8 +19,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         if (timeStatus)
-        {
-        
+        {        
             time += Time.deltaTime;
             seconds = (int)time % 60;
             timerUI.text = "Time: " + seconds; 
@@ -37,4 +35,5 @@ public class Timer : MonoBehaviour
     {
         timeStatus = time;
     }
+
 }

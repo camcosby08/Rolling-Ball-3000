@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class CollisionManager : MonoBehaviour
 {
     public bool timeOn;
-    private Timer timer;
+    private GameManagerScript timer;
 
     [SerializeField] string deathTag;
     [SerializeField] string finishLevelTag;
 
     void Awake()
     {
-        timer = GameObject.FindObjectOfType<Timer>();
+        timer = GameObject.FindObjectOfType<GameManagerScript>();
     }
 
     void Start()
