@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class CollisionManager : MonoBehaviour
 {
     public bool timeOn;
-    private GameManagerScript timer;
+    private GameManagerScript gameManagerScript;
 
     [SerializeField] string deathTag;
     [SerializeField] string finishLevelTag;
 
     void Awake()
     {
-        timer = GameObject.FindObjectOfType<GameManagerScript>();
+        gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();
     }
 
     void Start()
@@ -28,11 +28,15 @@ public class CollisionManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (collision.collider.tag == finishLevelTag)
+        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name != "Level3")
         {
-            Debug.Log("Finshed the Level");
+            gameManagerScript.completeLevel();
+        }
+        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name == "Level3")
+        {
             timeOn = false;
-            timer.UpdateScore(timeOn);
+            gameManagerScript.UpdateScore(timeOn);
+            gameManagerScript.completeGame();
         }
     }
 }

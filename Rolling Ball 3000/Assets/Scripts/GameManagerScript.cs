@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
     float time;
-    int seconds;
+    public static int seconds;
+    public static int finishTime;
     public Text timerUI;
-    private bool timeStatus;
+    public Text scoreUI;
+    private static bool timeStatus = true;
+
+    public GameObject completeLevelUI;
 
     void Start()
     {
-        time = 0;
-        timeStatus = true;
+        time = seconds;
+        //timeStatus = true;
+        //scoreUI.text = "Hey";
     }
 
     void Update()
@@ -26,9 +32,12 @@ public class GameManagerScript : MonoBehaviour
         }
         else
         {
-            timerUI.text = "Time: " + seconds;
+            this.enabled = false;
+            finishTime = seconds;
+            scoreUI.text = "Score: " + finishTime;
+            this.enabled = true;
+            //timeStatus = true;
         }
-
     }
 
     public void UpdateScore(bool time)
@@ -36,4 +45,23 @@ public class GameManagerScript : MonoBehaviour
         timeStatus = time;
     }
 
+    public void completeLevel()
+    {
+        Debug.Log("FINSHED LEVEL BITCHHHHHHHHHH");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void completeGame()
+    {
+        Debug.Log("COMPLETED THE GAME BITCHHHHHHHHHH");
+        Debug.Log(seconds);
+        completeLevelUI.SetActive(true);
+
+        //scoreUI.text = "Score: HJFLDKJKSDLHFKLJDS ";
+    }
+
+    public void setTime()
+    {
+        //time = 0f;
+    }
 }
