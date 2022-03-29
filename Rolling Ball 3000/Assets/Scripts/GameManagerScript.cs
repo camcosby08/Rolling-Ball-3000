@@ -8,6 +8,7 @@ public class GameManagerScript : MonoBehaviour
 {
     float time;
     public static int seconds;
+    public static int min;
     public static int finishTime;
     public Text timerUI;
     public Text scoreUI;
@@ -19,49 +20,54 @@ public class GameManagerScript : MonoBehaviour
     {
         time = seconds;
         //timeStatus = true;
-        //scoreUI.text = "Hey";
     }
 
     void Update()
     {
+        //calculate and display time to UI if the game hasnt been complete
         if (timeStatus)
         {        
             time += Time.deltaTime;
+            min = (int)time / 60;
             seconds = (int)time % 60;
-            timerUI.text = "Time: " + seconds; 
+            timerUI.text = "Time: " + min + " min " + seconds + " s"; 
         }
+        //if the game is complete stop updating the timer ie stop calling this method
         else
         {
-            this.enabled = false;
+            this.enabled = false; //stop using the update function as is it updates every frame
             finishTime = seconds;
             scoreUI.text = "Score: " + finishTime;
-            this.enabled = true;
+
+            //this.enabled = true;
             //timeStatus = true;
         }
     }
 
+    //method to take the boolean from the collision manager script and flip our local timeStatus 
+    //so we know the game is done 
     public void UpdateScore(bool time)
     {
         timeStatus = time;
     }
 
+    //method to run when when a level is complete
     public void completeLevel()
     {
-        Debug.Log("FINSHED LEVEL BITCHHHHHHHHHH");
+        Debug.Log("FINSHED LEVEL");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    //method to run if the game is complete
     public void completeGame()
     {
-        Debug.Log("COMPLETED THE GAME BITCHHHHHHHHHH");
+        Debug.Log("COMPLETED THE GAME");
         Debug.Log(seconds);
         completeLevelUI.SetActive(true);
-
-        //scoreUI.text = "Score: HJFLDKJKSDLHFKLJDS ";
     }
 
-    public void setTime()
-    {
-        //time = 0f;
-    }
+    //public void setTime()
+    //{
+    //    time = 0f;
+    //}
 }
