@@ -9,7 +9,7 @@ public class GameManagerScript : MonoBehaviour
     float time;
     public static int seconds;
     public static int min;
-    public static int finishTime;
+    public static int finishTime = 0;
     public Text timerUI;
     public Text scoreUI;
     private static bool timeStatus = true;
@@ -19,36 +19,34 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         time = seconds;
-        //timeStatus = true;
+        Debug.Log("Current time status" + timeStatus);
     }
 
     void Update()
     {
         //calculate and display time to UI if the game hasnt been complete
         if (timeStatus)
-        {        
+        {
             time += Time.deltaTime;
             min = (int)time / 60;
             seconds = (int)time % 60;
-            timerUI.text = "Time: " + min + " min " + seconds + " s"; 
+            timerUI.text = "Time: " + min + " min " + seconds + " s";
         }
         //if the game is complete stop updating the timer ie stop calling this method
         else
         {
-            this.enabled = false; //stop using the update function as is it updates every frame
+            //this.enabled = false; //stop using the update function as is it updates every frame
             finishTime = seconds;
             scoreUI.text = "Score: " + finishTime;
-
-            //this.enabled = true;
-            //timeStatus = true;
+            
         }
     }
 
     //method to take the boolean from the collision manager script and flip our local timeStatus 
     //so we know the game is done 
-    public void UpdateScore(bool time)
+    public void UpdateScore(bool completeBool)
     {
-        timeStatus = time;
+        timeStatus = completeBool;
     }
 
     //method to run when when a level is complete
@@ -66,8 +64,9 @@ public class GameManagerScript : MonoBehaviour
         completeLevelUI.SetActive(true);
     }
 
-    //public void setTime()
-    //{
-    //    time = 0f;
-    //}
+    public void setTime(float resetTime)
+    {
+        time = resetTime;
+    }
+
 }

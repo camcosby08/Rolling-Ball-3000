@@ -7,15 +7,17 @@ public class MainMenu : MonoBehaviour
 {
     private GameManagerScript gameManagerScript;
 
-    //void Awake()
-    //{
-    //    gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();
-    //}
+    void Awake()
+    {
+        gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();
+        //gameManagerScript.UpdateScore(true);
+        //gameManagerScript.setTime(0f);
+    }
 
     public void playGame()
     {
         SceneManager.LoadScene("Level1");
-        //gameManagerScript.setTime();
+        //gameManagerScript.UpdateScore(true);
     }
 
     public void quitGame()
@@ -27,5 +29,7 @@ public class MainMenu : MonoBehaviour
     public void mainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        gameManagerScript.UpdateScore(true);
+        gameManagerScript.setTime(0f);
     }
 }

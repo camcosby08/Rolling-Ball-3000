@@ -1821,7 +1821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerUI: {fileID: 1672780753}
-  scoreUI: {fileID: 0}
+  scoreUI: {fileID: 526915744}
   completeLevelUI: {fileID: 381870047}
 --- !u!1 &963194225
 GameObject:

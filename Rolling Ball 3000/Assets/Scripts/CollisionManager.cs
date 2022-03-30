@@ -7,6 +7,7 @@ public class CollisionManager : MonoBehaviour
 {
     public bool timeOn;
     private GameManagerScript gameManagerScript;
+    GameObject player;
     [SerializeField] string deathTag;
     [SerializeField] string finishLevelTag;
 
@@ -18,7 +19,7 @@ public class CollisionManager : MonoBehaviour
     void Awake()
     {
         //find the game manager script so we can use its methods
-        gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();
+        gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();        
     }
 
     void Start()
@@ -42,9 +43,12 @@ public class CollisionManager : MonoBehaviour
         //check if player finished the game
         if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name == "Level3")
         {
-            timeOn = false;
-            gameManagerScript.UpdateScore(timeOn); //use to pass boolean to the game manager script
+            //timeOn = false;
+            gameManagerScript.UpdateScore(false); //use to pass boolean to the game manager script
             gameManagerScript.completeGame(); //use to run the complete game method 
+            player = GameObject.Find("Player");
+            player.GetComponent<Rigidbody>().isKinematic = true;       
         }
     }
+
 }
