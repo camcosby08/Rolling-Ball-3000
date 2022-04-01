@@ -36,12 +36,12 @@ public class CollisionManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         //check if player finished a level
-        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name != "Level3")
+        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name != "LevelFinish")
         {
             gameManagerScript.completeLevel();
         }
         //check if player finished the game
-        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name == "Level3")
+        if (collision.collider.tag == finishLevelTag && SceneManager.GetActiveScene().name == "LevelFinish")
         {
             //timeOn = false;
             gameManagerScript.UpdateScore(false); //use to pass boolean to the game manager script
