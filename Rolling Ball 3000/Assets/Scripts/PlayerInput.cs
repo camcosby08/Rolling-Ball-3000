@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
+
 {
+    private GameManagerScript gameManagerScript;
+
     [SerializeField] Vector3 v3Force;
 
     [SerializeField] KeyCode positive;
@@ -13,6 +16,11 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] KeyCode restartButton;
     [SerializeField] KeyCode quitButton;
     [SerializeField] KeyCode mainMenuButton;
+
+    void Awake()
+    {
+        gameManagerScript = GameObject.FindObjectOfType<GameManagerScript>();
+    }
 
     //Apply a constant force 
     void FixedUpdate()
@@ -27,7 +35,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKey(restartButton))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (Input.GetKey(quitButton))
         {
@@ -36,6 +44,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKey(mainMenuButton))
         {
+            gameManagerScript.setTime(0f);
             SceneManager.LoadScene("MainMenu");
         }
     }
